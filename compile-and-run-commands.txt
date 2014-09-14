@@ -1,0 +1,12 @@
+C:\Users\username>cd\
+
+C:\>cd C:\Users\username\workspace\Intro-Java-Homework\src\
+
+C:\Users\username\workspace\Intro-Java-Homework\src>javac .\_6_SumTwoNumbers\_6_SumTwoNumbers.java
+
+C:\Users\username\workspace\Intro-Java-Homework\src>java _6_SumTwoNumbers._6_SumTwoNumbers
+11
+-6
+5
+
+C:\Users\username\workspace\Intro-Java-Homework\src>
