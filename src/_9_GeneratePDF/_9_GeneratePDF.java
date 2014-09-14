@@ -14,9 +14,9 @@ public class _9_GeneratePDF {
 
 	public static void main(String[] args) throws IOException,
 			DocumentException {
-		String[] face = new String[] { "2", "3", "4", "5", "6", "7", "8", "9",
+		String[] faces = { "2", "3", "4", "5", "6", "7", "8", "9",
 				"10", "J", "Q", "K", "A" };
-		char[] suit = new char[] { '\u2660', '\u2665', '\u2666', '\u2663' };
+		char[] suits = { '\u2660', '\u2665', '\u2666', '\u2663' };
 
 		Document document = new Document(PageSize.getRectangle("A4"));
 
@@ -36,18 +36,18 @@ public class _9_GeneratePDF {
 		int cardWidth = 80;
 		int cardHeight = 120;
 
-		for (int i = 0; i < suit.length; i++) {
+		for (int i = 0; i < suits.length; i++) {
 			int cardLLX = (595 - cardWidth) / 2;
 			int cardLLY = 660 - i * 180;
 			double f = Math.sqrt((cardLLX + cardWidth / 2)
 					* (cardLLX + cardWidth / 2) + cardLLY * cardLLY);
 			double gamma = Math.asin(cardLLY / f);
-			for (int j = 0; j < face.length; j++) {
+			for (int j = 0; j < faces.length; j++) {
 
 				canvas.saveState();
 
-				double beta = ((face.length - 1) / 2 + 0.05 - j) * Math.PI
-						/ face.length;
+				double beta = ((faces.length - 1) / 2 + 0.05 - j) * Math.PI
+						/ faces.length;
 				// w/o 0.05 the mid card becomes exactly vertical and the border
 				// seems much sharper than other cards' borders
 
@@ -81,28 +81,28 @@ public class _9_GeneratePDF {
 				canvas.concatCTM(cosinus, sinus, -sinus, cosinus, offsetX,
 						offsetY);
 				canvas.setTextMatrix(cardLLX + 6, cardLLY + cardHeight - 16);
-				canvas.showText(face[j]);
+				canvas.showText(faces[j]);
 				if (j == 12) {
 					canvas.setTextMatrix(-1, 0, 0, -1, cardLLX + cardWidth - 6,
 							cardLLY + 16);
-					canvas.showText(face[j]);
+					canvas.showText(faces[j]);
 				}
 
 				// print the suit
 				canvas.setLineWidth(0.0f);
 				canvas.setFontAndSize(base, 12);
 				canvas.setTextMatrix(cardLLX + 7, cardLLY + cardHeight - 28);
-				canvas.showText("" + suit[i]);
+				canvas.showText("" + suits[i]);
 
 				// print the center suit symbol
 				if (j == 12) {
 					canvas.setTextMatrix(-1, 0, 0, -1, cardLLX + cardWidth - 7,
 							cardLLY + 28);
-					canvas.showText("" + suit[i]);
+					canvas.showText("" + suits[i]);
 					canvas.setFontAndSize(base, 33);
 					canvas.setTextMatrix(cardLLX + cardWidth / 2 - 10, cardLLY
 							+ cardHeight / 2 - 10);
-					canvas.showText("" + suit[i]);
+					canvas.showText("" + suits[i]);
 				}
 
 				canvas.endText();
